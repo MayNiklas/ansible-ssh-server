@@ -1,2 +1,59 @@
 ---
 # tasks file for ansible-ssh-server
+
+- name: PasswordAuthentication no
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  notify:
+    - restart ssh
+
+- name: ChallengeResponseAuthentication no
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?ChallengeResponseAuthentication'
+    line: 'ChallengeResponseAuthentication no'
+  notify:
+    - restart ssh
+
+- name: UsePAM no
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?UsePAM'
+    line: 'UsePAM no'
+  notify:
+    - restart ssh
+
+# LogLevel VERBOSE logs user's key fingerprint on login. Needed to have a clear audit track of which key was using to log in.
+- name: LogLevel VERBOSE
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^LogLevel'
+    line: 'LogLevel VERBOSE'
+  notify:
+    - restart ssh
+ 
+# Log sftp level file access (read/write/etc.) that would not be easily logged otherwise.
+- name: sftp log
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^Subsystem(\s+)sftp'
+    line: 'Subsystem sftp  /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO'
+  notify:
+    - restart ssh
+
+- name: PermitRootLogin No
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin No'
+  notify:
+    - restart ssh
+
