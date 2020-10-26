@@ -1,7 +1,10 @@
-Role Name
+ansible-ssh-server
 =========
+[![Build Status](https://travis-ci.com/MayNiklas/ansible-ssh-server.svg?branch=main)](https://travis-ci.com/MayNiklas/ansible-ssh-server)
 
-A brief description of the role goes here.
+- installs openssh
+- enabeling openssh on startup
+- hardening /etc/ssh/sshd_config
 
 Requirements
 ------------
