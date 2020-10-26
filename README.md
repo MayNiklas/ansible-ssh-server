@@ -1,6 +1,6 @@
 ansible-ssh-server
 =========
-[![Build Status](https://travis-ci.com/MayNiklas/ansible-docker.svg?branch=main)](https://travis-ci.com/MayNiklas/ansible-ssh-server)
+[![Build Status](https://travis-ci.com/MayNiklas/ansible-ssh-server.svg?branch=main)](https://travis-ci.com/MayNiklas/ansible-ssh-server)
 
 - installs openssh
 - enabeling openssh on startup
