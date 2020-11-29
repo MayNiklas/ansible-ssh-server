@@ -6,6 +6,8 @@
   package:
     name: openssh
     state: latest
+  when:
+    - ansible_distribution == 'Archlinux'
     
 - name: Enable openssh on startup
   become: true
