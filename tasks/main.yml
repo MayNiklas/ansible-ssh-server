@@ -2,18 +2,20 @@
 # tasks file for ansible-ssh-server
 
 - name: Install necessary packages
-  pacman:
-    name:
-      - openssh
+  become: true
+  package:
+    name: openssh
     state: latest
-
+    
 - name: Enable openssh on startup
+  become: true
   systemd:
     name: sshd
     enabled: yes
     masked: no
 
 - name: Start openssh
+  become: true
   systemd:
     state: started
     name: sshd
